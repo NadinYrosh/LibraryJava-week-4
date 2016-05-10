@@ -6,9 +6,11 @@ import org.sql2o.*;
 public class Book {
   private String title;
   private int id;
+  private int copy_id;
 
-  public Book(String title) {
-     this.title = title;
+  public Book(String title, int copyId) {
+    this.title = title;
+    this.copy_id = copyId;
   }
 
   public String getTitle(){
@@ -52,7 +54,7 @@ public class Book {
         .executeUpdate();
     }
   }
-//--------------
+
   public void addAuthor(Author newAuthor) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO book_author (book_id, author_id) VALUES (:book, :author)";
@@ -83,7 +85,7 @@ public class Book {
       return authors;
     }
   }
-//----------------
+
   public static Book find(int id){
     try(Connection con = DB.sql2o.open()) {
       String sql = "SELECT * FROM books WHERE id = :id";
