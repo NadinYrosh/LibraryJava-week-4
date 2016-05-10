@@ -88,38 +88,37 @@ public class AuthorTest {
     assertEquals(null, Author.find(myAuthorId));
   }
 
-  // @Test
-  // public void addCategory_addsCategoryToTask() {
-  //   Category myCategory = new Category("Household chores");
-  //   myCategory.save();
-  //   Task myTask = new Task("Mow the lawn");
-  //   myTask.save();
-  //   myTask.addCategory(myCategory);
-  //   Category savedCategory = myTask.getCategories().get(0);
-  //   assertTrue(myCategory.equals(savedCategory));
-  // }
-  //
-  // @Test
-  // public void getCategories_returnsAllCategories_List() {
-  //   Category myCategory = new Category("Household chores");
-  //   myCategory.save();
-  //   Task myTask = new Task("Mow the lawn");
-  //   myTask.save();
-  //   myTask.addCategory(myCategory);
-  //   List savedCategories = myTask.getCategories();
-  //   assertEquals(1, savedCategories.size());
-  // }
-  //
-  //
-  // @Test
-  // public void delete_deletesAllTasksAndCategoriesAssociations() {
-  //   Category myCategory = new Category("Household chores");
-  //   myCategory.save();
-  //   Task myTask = new Task("Mow the lawn");
-  //   myTask.save();
-  //   myTask.addCategory(myCategory);
-  //   myTask.delete();
-  //   assertEquals(0, myCategory.getTasks().size());
-  // }
+  @Test
+  public void addBook_addsBookToAuthor() {
+    Book myBook = new Book("Tom Sawyer");
+    myBook.save();
+    Author myAuthor = new Author("Dave", "Smith");
+    myAuthor.save();
+    myAuthor.addBook(myBook);
+    Book savedBook = myAuthor.getBooks().get(0);
+    assertTrue(myBook.equals(savedBook));
+  }
+
+  @Test
+  public void getBooks_returnsAllBooks_List() {
+    Book myBook = new Book("Tom Sawyer");
+    myBook.save();
+    Author myAuthor = new Author("Dave", "Smith");
+    myAuthor.save();
+    myAuthor.addBook(myBook);
+    List savedBooks = myAuthor.getBooks();
+    assertEquals(1, savedBooks.size());
+  }
+
+  @Test
+  public void delete_deletesAllAuthorAndBookAssociations() {
+    Book myBook = new Book("Tom Sawyer");
+    myBook.save();
+    Author myAuthor = new Author("Dave", "Smith");
+    myAuthor.save();
+    myAuthor.addBook(myBook);
+    myAuthor.delete();
+    assertEquals(0, myBook.getAuthors().size());
+  }
 
 }
