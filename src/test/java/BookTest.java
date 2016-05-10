@@ -10,13 +10,13 @@ public class BookTest {
 
   @Test
   public void Book_instantiatesCorrectly_true(){
-    Book myBook = new Book("Tom Sawyer", 1);
+    Book myBook = new Book("Tom Sawyer");
     assertEquals(true, myBook instanceof Book);
   }
 
   @Test
   public void getTitle_instantiatesWithTitle_true(){
-    Book myBook = new Book("Tom Sawyer", 1);
+    Book myBook = new Book("Tom Sawyer");
     assertEquals("Tom Sawyer", myBook.getTitle());
   }
 
@@ -27,21 +27,21 @@ public class BookTest {
 
   @Test
   public void equals_returnsTrueIfTitleAreTheSame_true() {
-    Book firstBook = new Book("Tom Sawyer", 1);
-    Book secondBook = new Book("Tom Sawyer", 1);
+    Book firstBook = new Book("Tom Sawyer");
+    Book secondBook = new Book("Tom Sawyer");
     assertTrue(firstBook.equals(secondBook));
   }
 
   @Test
   public void save_savesObjectIntoDatabase_true() {
-    Book myBook = new Book("Tom Sawyer", 1);
+    Book myBook = new Book("Tom Sawyer");
     myBook.save();
     assertTrue(Book.all().get(0).equals(myBook));
   }
 
   @Test
   public void save_assignsIdToObject() {
-    Book myBook = new Book("Tom Sawyer", 1);
+    Book myBook = new Book("Tom Sawyer");
     myBook.save();
     Book savedBook = Book.all().get(0);
     assertEquals(myBook.getId(), savedBook.getId());
@@ -49,7 +49,7 @@ public class BookTest {
 
   @Test
   public void find_findsBookInDatabase_True() {
-    Book myBook = new Book("Tom Sawyer", 1);
+    Book myBook = new Book("Tom Sawyer");
     myBook.save();
     Book savedBook = Book.find(myBook.getId());
     assertTrue(myBook.equals(savedBook));
@@ -57,7 +57,7 @@ public class BookTest {
 
   @Test
   public void update_updatesBookTitle_true() {
-    Book myBook = new Book("Tom Sawyer", 1);
+    Book myBook = new Book("Tom Sawyer");
     myBook.save();
     myBook.update("Pitter Pen");
     assertEquals("Pitter Pen", Book.find(myBook.getId()).getTitle());
@@ -65,7 +65,7 @@ public class BookTest {
 
   @Test
   public void delete_deletesBook_true() {
-    Book myBook = new Book("Tom Sawyer", 1);
+    Book myBook = new Book("Tom Sawyer");
     myBook.save();
     int myBookId = myBook.getId();
     myBook.delete();
@@ -74,7 +74,7 @@ public class BookTest {
 
   @Test
   public void addBook_addsBookToAuthor() {
-    Book myBook = new Book("Tom Sawyer", 1);
+    Book myBook = new Book("Tom Sawyer");
     myBook.save();
     Author myAuthor = new Author("Dave", "Smith");
     myAuthor.save();
@@ -85,7 +85,7 @@ public class BookTest {
 
   @Test
   public void getBooks_returnsAllBooks_List() {
-    Book myBook = new Book("Tom Sawyer", 1);
+    Book myBook = new Book("Tom Sawyer");
     myBook.save();
     Author myAuthor = new Author("Dave", "Smith");
     myAuthor.save();
@@ -96,7 +96,7 @@ public class BookTest {
 
   @Test
   public void delete_deletesAllAuthorAndBookAssociations() {
-    Book myBook = new Book("Tom Sawyer", 1);
+    Book myBook = new Book("Tom Sawyer");
     myBook.save();
     Author myAuthor = new Author("Dave", "Smith");
     myAuthor.save();
@@ -109,7 +109,7 @@ public class BookTest {
   public void addAuthor_addsAuthorToBook() {
     Author myAuthor = new Author("Dave", "Smith");
     myAuthor.save();
-    Book myBook = new Book("Tom Sawyer", 1);
+    Book myBook = new Book("Tom Sawyer");
     myBook.save();
     myBook.addAuthor(myAuthor);
     Author savedAuthor = myBook.getAuthors().get(0);
@@ -120,7 +120,7 @@ public class BookTest {
   public void getAuthors_returnsAllAuthors_List() {
     Author myAuthor = new Author("Dave", "Smith");
     myAuthor.save();
-    Book myBook = new Book("Tom Sawyer", 1);
+    Book myBook = new Book("Tom Sawyer");
     myBook.save();
     myBook.addAuthor(myAuthor);
     List savedAuthors = myBook.getAuthors();
@@ -131,7 +131,7 @@ public class BookTest {
   public void delete_deletesAllBookAndAuthorAssociations() {
     Author myAuthor = new Author("Dave", "Smith");
     myAuthor.save();
-    Book myBook = new Book("Tom Sawyer", 1);
+    Book myBook = new Book("Tom Sawyer");
     myBook.save();
     myBook.addAuthor(myAuthor);
     myBook.delete();

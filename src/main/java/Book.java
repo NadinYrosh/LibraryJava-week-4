@@ -6,11 +6,9 @@ import org.sql2o.*;
 public class Book {
   private String title;
   private int id;
-  private int copy_id;
 
-  public Book(String title, int copyId) {
+  public Book(String title) {
     this.title = title;
-    this.copy_id = copyId;
   }
 
   public String getTitle(){
